@@ -5,6 +5,7 @@ const LINE_CHANNEL_ACCESS_TOKEN = 'ovnrJvg9lbQHc52Vun14duTHYuR0YbNw7X661YJuk5bRI
 var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
+var controller = require('./controllers/line.js');
 
 var app = express();
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.get('/', function(req, res, next){
 app.post('/webhook', function(req, res, next){
     res.status(200).end();
     for (var event of req.body.events){
+        controller.line(event);
         if (event.type == 'message' && event.message.text != ''){
             var headers = {
                 'Content-Type': 'application/json',

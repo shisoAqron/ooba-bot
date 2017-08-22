@@ -9,15 +9,13 @@ Line.prototype.post = function (event, callback) {
     if (event.type == 'message') {
         const receiveMessage = event.message;
         console.log(receiveMessage);
-        if (event.type == 'message' && event.message.text != ''){
-            parrot_mes(event);
-        }
+        if (event.message.text != '') parrot_mes(event);
     }
     
 };
 
 parrot_mes = function(event){
-
+    
     var headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.LINE_CHANNEL_ACCESS_TOKEN
@@ -30,13 +28,15 @@ parrot_mes = function(event){
         }]
     }
     var url = 'https://api.line.me/v2/bot/message/reply';
+    console.log("parrot");
+    /*
     request({
         url: url,
         method: 'POST',
         headers: headers,
         body: body,
         json: true
-    });
+    });*/
 
 
 };

@@ -29,14 +29,22 @@ parrot_mes = function(event){
     }
     var url = 'https://api.line.me/v2/bot/message/reply';
     console.log("parrot");
+<<<<<<< HEAD
+    
+=======
     /*
+>>>>>>> f2a7a40251ed983ad4f24a8b728e56c8bdabc6cf
     request({
         url: url,
         method: 'POST',
         headers: headers,
         body: body,
         json: true
+<<<<<<< HEAD
+    });
+=======
     });*/
+>>>>>>> f2a7a40251ed983ad4f24a8b728e56c8bdabc6cf
 
 
 };

@@ -4,7 +4,6 @@ const LINE_CHANNEL_ACCESS_TOKEN = 'ovnrJvg9lbQHc52Vun14duTHYuR0YbNw7X661YJuk5bRI
 // モジュールのインポート
 var express = require('express');
 var bodyParser = require('body-parser');
-var request = require('request');
 var Line = require('./controllers/line.js');
 
 var app = express();
@@ -34,6 +33,7 @@ app.post('/webhook', function(req, res, next){
     res.status(200).end();
     for (var event of req.body.events){
         line.post(event);
+        /*
         if (event.type == 'message' && event.message.text != ''){
             var headers = {
                 'Content-Type': 'application/json',
@@ -55,5 +55,6 @@ app.post('/webhook', function(req, res, next){
                 json: true
             });
         }
+        */
     }
 });

@@ -5,16 +5,38 @@ var Line = function() {
 }
 
 
-Line.prototype.post = function (body, callback) {
-    if (body.type == 'message') {
-        const receiveMessage = body.message;
+Line.prototype.post = function (event, callback) {
+    if (event.type == 'message') {
+        const receiveMessage = event.message;
         console.log(receiveMessage);
+        if (event.type == 'message' && event.message.text != ''){
+            parrot_mes(event);
+        }
     }
     
 };
 
-parrot_mes = function(){
+parrot_mes = function(event){
 
+    var headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.LINE_CHANNEL_ACCESS_TOKEN
+    }
+    var body = {
+        replyToken: event.replyToken,
+        messages: [{
+            type: 'text',
+            text: event.message.text
+        }]
+    }
+    var url = 'https://api.line.me/v2/bot/message/reply';
+    request({
+        url: url,
+        method: 'POST',
+        headers: headers,
+        body: body,
+        json: true
+    });
 
 
 };

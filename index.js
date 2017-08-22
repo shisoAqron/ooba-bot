@@ -33,7 +33,7 @@ app.get('/', function(req, res, next){
 app.post('/webhook', function(req, res, next){
     res.status(200).end();
     for (var event of req.body.events){
-        Line.line(event);
+        Line.post(event);
         if (event.type == 'message' && event.message.text != ''){
             var headers = {
                 'Content-Type': 'application/json',

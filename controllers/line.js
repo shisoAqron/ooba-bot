@@ -3,7 +3,7 @@ var Line = function() {
 }
 
 
-line = function (body, callback) {
+Line.prototype.post = function (body, callback) {
     const event = body.events[0];
     if (event.type == 'message') {
         const receiveMessage = event.message;

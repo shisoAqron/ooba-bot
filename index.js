@@ -45,22 +45,35 @@ app.post('/webhook', function(req, res, next){
                 }]
             }
             */
-            var body ={
+            //動いてない
+            var body = {
                 replyToken: event.replyToken,
                 messages: [{
-                    type: 'template',
-                    template: {
-                        type:'button',
-                        title:'おうむボタン',
-                        text:'メッセージがボタンになるよ',
-                        actions:{
-                            type:'postback',
-                            label:event.message.text,
-                            data:event.message.text,
-                        }
-                    },
-                    altText: 'ボタン'
-
+                    "type": "template",
+                    "altText": "this is a buttons template",
+                    "template": {
+                        "type": "buttons",
+                        "thumbnailImageUrl": "https://example.com/bot/images/image.jpg",
+                        "title": "Menu",
+                        "text": "Please select",
+                        "actions": [
+                            {
+                              "type": "postback",
+                              "label": "Buy",
+                              "data": "action=buy&itemid=123"
+                            },
+                            {
+                              "type": "postback",
+                              "label": "Add to cart",
+                              "data": "action=add&itemid=123"
+                            },
+                            {
+                              "type": "uri",
+                              "label": "View detail",
+                              "uri": "http://example.com/page/123"
+                            }
+                        ]
+                    }
                 }]
             }
 

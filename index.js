@@ -36,6 +36,7 @@ app.post('/webhook', function(req, res, next){
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + LINE_CHANNEL_ACCESS_TOKEN
             }
+            /*
             var body = {
                 replyToken: event.replyToken,
                 messages: [{
@@ -43,6 +44,26 @@ app.post('/webhook', function(req, res, next){
                     text: event.message.text
                 }]
             }
+            */
+            var body ={
+                replyToken: event.replyToken,
+                messages: [{
+                    type: 'template',
+                    template: {
+                        type:'button',
+                        title:'おうむボタン',
+                        text:'メッセージがボタンになるよ',
+                        actions:{
+                            type:'postback',
+                            label:event.message.text,
+                            data:event.message.text,
+                        }
+                    },
+                    altText: 'ボタン'
+
+                }]
+            }
+
             var url = 'https://api.line.me/v2/bot/message/reply';
             request({
                 url: url,
@@ -51,6 +72,11 @@ app.post('/webhook', function(req, res, next){
                 body: body,
                 json: true
             });
+        }
+
+        if(event.type == 'postback'){
+            console.log('postback!!!!');
+            console.log(event);
         }
         
     }

@@ -37,6 +37,7 @@ app.post('/webhook', function(req, res, next){
                 'Authorization': 'Bearer ' + LINE_CHANNEL_ACCESS_TOKEN
             }
             /*
+            //message test
             var body = {
                 replyToken: event.replyToken,
                 messages: [{
@@ -45,7 +46,7 @@ app.post('/webhook', function(req, res, next){
                 }]
             }
             */
-            //動いてない
+            //button template
             var body = {
                 replyToken: event.replyToken,
                 messages: [{
@@ -54,7 +55,7 @@ app.post('/webhook', function(req, res, next){
                     "template": {
                         "type": "buttons",
                         "thumbnailImageUrl": "https://example.com/bot/images/image.jpg",
-                        "title": "Menu",
+                        "title": event.message.text,
                         "text": "Please select",
                         "actions": [
                             {

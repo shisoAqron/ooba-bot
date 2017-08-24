@@ -1,4 +1,8 @@
-const LINE_CHANNEL_ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN;
+//const LINE_CHANNEL_ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN;
+
+var fs = require('fs');
+var obj = JSON.parse(fs.readFileSync('./token.json', 'utf8'));
+const LINE_CHANNEL_ACCESS_TOKEN = obj.line.Channel_Access_Token;
 
 // -----------------------------------------------------------------------------
 // モジュールのインポート

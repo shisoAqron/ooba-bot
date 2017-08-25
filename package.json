@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "export PORT=3008;node -r babel-register src/index.js",
-    "start": "export PORT=3008;node lib/index.js",
-    "build": "node_modules/babel-cli/bin/babel.js src -d lib",
+    "start": "export PORT=3008;node build/index.js",
+    "build": "node_modules/babel-cli/bin/babel.js src -d build",
     "clean": "rm -rf lib"
   },
   "keywords": [],

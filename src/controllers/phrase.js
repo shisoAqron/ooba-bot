@@ -1,15 +1,9 @@
 export default async (reciveMessage) => {
-  const mesTest = () => {
-    return [{
-      type: 'text',
-      text: 'テスト文ですよ'
-    }]
-  }
 
   const failed = () => {
     return [{
       type: 'text',
-      text: 'もう一度言ってね'
+      text: 'え？なぁに～？􀀯􀀶'
     }]
   }
 
@@ -94,23 +88,101 @@ export default async (reciveMessage) => {
     }]
   }
 
-  const start_glass_search = () => {
-    // 後ろの文字化け2つはLINEの絵文字（目とビール）
+  const question_1 = () => {
+    return [
+      {
+        type: 'text',
+        text: '早速たよってくれてありがと􀀇􀀹􀁵'
+      },
+      {
+        'type': 'template',
+        'altText': 'this is a buttons template',
+        'template': {
+          'type': 'buttons',
+          'title': 'そうね…例えばどんなグラスを探したい？',
+          'text': 'Please select',
+          'actions': [
+            {
+              'type': 'postback',
+              'label': '普段使うグラス',
+              'data': 'action=nomal&qestionId=1',
+              'text': '普段使いのグラスを探してるんだけど…'
+            },
+            {
+              'type': 'postback',
+              'label': '特別な日のグラス',
+              'data': 'action=special&questionId=1',
+              'text': '特別な日のためにグラスを用意したいんだけど…'
+            }
+          ]
+        }
+      }
+    ]
+  }
+
+  const question_2 = () => {
+    return [
+      {
+        'type': 'template',
+        'altText': 'this is a buttons template',
+        'template': {
+          'type': 'buttons',
+          'text': 'そっか～！それって自分用？それとも誰かにプレゼント？􀁵',
+          'actions': [
+            {
+              'type': 'postback',
+              'label': '自分用に',
+              'data': 'action=self&qestionId=2',
+              'text': '自分用のを探してるよ'
+            },
+            {
+              'type': 'postback',
+              'label': '誰かに贈りたい',
+              'data': 'action=present&questionId=2',
+              'text': 'プレゼントとして贈りたくて…'
+            },
+            {
+              'type': 'postback',
+              'label': '自分と誰かのペアで買いたい',
+              'data': 'action=pair&questionId=2',
+              'text': '実はペアグラスを探してて…'
+            },
+            {
+              'type': 'postback',
+              'label': 'パーティー用に復数',
+              'data': 'action=party&questionId=2',
+              'text': 'パーティー用に良いのないかなってs'
+            }
+          ]
+        }
+      }
+    ]
+
+  }
+
+  const test = () => {
     return [{
       type: 'text',
-      text: 'グラスを探すよ􀀮􀁘'
+      text:'友達登録ありがとう～􀂱􀀭'+'¥n'
+          +'XXXなグラス選びなら私に任せて􀀹􀀅'+'¥¥n'
+          +'hogehoge'
+          +'さんが好きそうなの'+'¥u0x0A'
+          +'オススメ出来るよう頑張っちゃう􀁿􀂱􀀱'
     }]
   }
 
-  console.log('reciveMessage:' + reciveMessage)
+  const checkAnswer = (ans1, ans2) => {
+    if (reciveMessage == ans1 || reciveMessage == ans2) return true
+    else false
+  }
+
   if (reciveMessage.match(/^なにか良いグラスない？$/)) {
-    return start_glass_search()
-  } else if (reciveMessage.match(/テスト/)) {
-    return mesTest()
-  } else if (reciveMessage.match(/ボタン/)) {
-    return buttonTest()
-  } else if (reciveMessage.match(/カル/)) {
-    return carouselTest()
+    return question_1()
+  } else if (checkAnswer('普段使いのグラスを探してるんだけど…', '特別な日のためにグラスを用意したいんだけど…')) {
+    return question_2()
+    //質問２の後に相槌を入れたい
+  } else if (reciveMessage.match(/^B$/)) {
+    return test()
   } else {
     return failed()
   }

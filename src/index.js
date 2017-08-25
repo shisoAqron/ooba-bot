@@ -20,21 +20,30 @@ app.post('/webhook', middleware(config), (req, res) => {
 const client = new Client(config)
 
 const handleEvent = async (event) => {
-  console.log(event)
-
-  let user_id = event.source.userId
-  const userProfile = await client.getProfile(user_id)
-  console.log('displayName:'+userProfile.displayName)
-
-  if (event.type == 'message' && event.message.type == 'text') {
-
-    const textObj = await controller.phrase(event.message.text)
-    return client.replyMessage(event.replyToken, textObj)
-
-  } else if (event.type == 'postback') {
+  //console.log(event)
+  if (event.type == 'postback') {
     console.log('postback!!!')
     console.log(event)
     return Promise.resolve(null)
+
+  } else if (event.type == 'message' && event.message.type == 'text') {
+    console.log(event)
+    const textObj = await controller.phrase(event.message.text)
+    return client.replyMessage(event.replyToken, textObj)
+
+  } else if (event.type == 'follow') {
+    const userProfile = await client.getProfile(event.source.userId)
+    console.log('displayName:'+userProfile.displayName)
+    return client.replyMessage(event.replyToken,
+      {
+        type: 'text',
+        text: '友達登録ありがとう～􀂱􀀭'+'¥n'
+              +'XXXなグラス選びなら私に任せて􀀹􀀅'+'¥n'
+              +userProfile.displayName
+              +'さんが好きそうなの'+'¥n'
+              +'オススメ出来るよう頑張っちゃう􀁿􀂱􀀱'
+      }
+    )
 
   } else {
     console.log('other event!!!')

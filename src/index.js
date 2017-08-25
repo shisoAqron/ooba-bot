@@ -13,15 +13,15 @@ app.use(bodyParser.urlencoded({
 }))
 
 const port = (process.env.PORT || 3000)
-app.listen(port, ()=> {
+app.listen(port, () => {
   console.log('Node is running on port ' + port)
 })
 
-app.get('/', (req, res, next)=> {
+app.get('/', (req, res, next) => {
   res.send('Node is running on port ' + port)
 })
 
-app.post('/webhook', (req, res, next)=> {
+app.post('/webhook', (req, res, next) => {
   res.status(200).end()
   for (let event of req.body.events) {
 

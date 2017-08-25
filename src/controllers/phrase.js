@@ -94,8 +94,18 @@ export default async (reciveMessage) => {
     }]
   }
 
+  const start_glass_search = () => {
+    // 後ろの文字化け2つはLINEの絵文字（目とビール）
+    return [{
+      type: 'text',
+      text: 'グラスを探すよ􀀮􀁘'
+    }]
+  }
+
   console.log('reciveMessage:' + reciveMessage)
-  if (reciveMessage.match(/テスト/)) {
+  if (reciveMessage.match(/^なにか良いグラスない？$/)) {
+    return start_glass_search()
+  } else if (reciveMessage.match(/テスト/)) {
     return mesTest()
   } else if (reciveMessage.match(/ボタン/)) {
     return buttonTest()

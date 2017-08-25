@@ -1,7 +1,7 @@
 import request from 'request'
 import phrase from './phrase'
 
-export default async (APItoken, data, callback) => {
+export default async (APItoken, data) => {
   const event = data.events[0]
 
   const reply = (messageObj) =>  {

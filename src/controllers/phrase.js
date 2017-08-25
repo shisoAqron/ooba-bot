@@ -6,7 +6,7 @@ export default async (reciveMessage) => {
     }]
   }
 
-  const faild = () => {
+  const failed = () => {
     return [{
       type: 'text',
       text: 'もう一度言ってね'
@@ -102,6 +102,6 @@ export default async (reciveMessage) => {
   } else if (reciveMessage.match(/カル/)) {
     return carouselTest()
   } else {
-    return faild()
+    return failed()
   }
 }

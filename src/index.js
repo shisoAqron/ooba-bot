@@ -4,7 +4,7 @@ import bodyParser from 'body-parser'
 import controller from './controllers'
 
 const tokenObj = JSON.parse(fs.readFileSync('./token.json', 'utf8'))
-const LINE_APItoken = tokenObj.line.Channel_Access_Token
+const LINE_Access_Token = tokenObj.line.Channel_Access_Token
 
 const app = express()
 app.use(bodyParser.json())
@@ -19,5 +19,5 @@ app.listen(port, () => {
 
 app.post('/webhook', (req, res, next) => {
   res.status(200).end()
-  controller.line(LINE_APItoken, req.body)
+  controller.line(LINE_Access_Token, req.body)
 })

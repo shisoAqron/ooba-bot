@@ -72,7 +72,8 @@
       "no-console": 0,
       "import/named": "off",
       "import/default": "off",
-      "arrow-spacing": 2
+      "arrow-spacing": 2,
+      "space-infix-ops": 2
     },
     "settings": {
       "import/parser": "babel-eslint",

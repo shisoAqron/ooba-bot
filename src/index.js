@@ -27,7 +27,7 @@ app.post('/webhook', (req, res) => {
 const client = new Client(config)
 
 const handleEvent = async (event) => {
-  if (event.type == 'message'|| event.type == 'postback') {
+  if (event.type == 'message' || event.type == 'postback') {
     const textObj = await controller.phrase(event)
     if (textObj == null) return Promise.resolve(null)
     else return client.replyMessage(event.replyToken, textObj)
@@ -38,9 +38,9 @@ const handleEvent = async (event) => {
     return client.replyMessage(event.replyToken,
       {
         type: 'text',
-        text: '友達登録ありがとう～􀂱􀀭'+'\n'
-              +'XXXなグラス選びなら私に任せて􀀹􀀅'+'\n'
-              +userProfile.displayName+'さんが好きそうなのオススメ出来るよう頑張っちゃう􀁿􀂱􀀱'
+        text: '友達登録ありがとう～􀂱􀀭' + '\n'
+              + 'XXXなグラス選びなら私に任せて􀀹􀀅' + '\n'
+              + userProfile.displayName + 'さんが好きそうなのオススメ出来るよう頑張っちゃう􀁿􀂱􀀱'
       }
     )
 

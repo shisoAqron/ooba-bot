@@ -89,7 +89,7 @@ export default async (event) => {
       },
       {
         type: 'text',
-        text: 'どんなのが良いかな～􀂬􀂬\n'+'ビールによって、合うグラスも色々あるの􀀮􀁵\n'+'今回はどんなビールに合わせたい？'
+        text: 'どんなのが良いかな～􀂬􀂬\n' + 'ビールによって、合うグラスも色々あるの􀀮􀁵\n' + '今回はどんなビールに合わせたい？'
       },
       {
         'type': 'template',
@@ -193,7 +193,7 @@ export default async (event) => {
     return [
       {
         type: 'text',
-        text: beerType+'ね！オッケ～􀀈􀀳'
+        text: beerType + 'ね！オッケ～􀀈􀀳'
       },
       {
         'type': 'template',
@@ -481,10 +481,10 @@ export default async (event) => {
   } else if (event.type == 'postback') {
     const query = event.postback.data.match(/answer=(.*)&questionId=(\d+)/)
     const [answer, questionId] = [query[1], Number(query[2])]
-    console.log('questionId:' + questionId, 'answer:'+answer)
+    console.log('questionId:' + questionId, 'answer:' + answer)
 
     let body = null
-    if (questionId<9) body = eval('question_'+(questionId+1)+'(answer)')
+    if (questionId < 9) body = eval('question_' + (questionId + 1) + '(answer)')
     return body
   }
 }

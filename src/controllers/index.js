@@ -1,5 +1,5 @@
-import line from './line'
+import phrase from './phrase'
 
 export default {
-  line
+  phrase
 }

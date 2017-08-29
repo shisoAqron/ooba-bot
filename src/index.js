@@ -39,7 +39,7 @@ const handleEvent = async (event) => {
       {
         type: 'text',
         text: '友達登録ありがとう～􀂱􀀭' + '\n'
-              + 'XXXなグラス選びなら私に任せて􀀹􀀅' + '\n'
+              + 'とっておきのグラス選びなら私に任せて􀀹􀀅' + '\n'
               + userProfile.displayName + 'さんが好きそうなのオススメ出来るよう頑張っちゃう􀁿􀂱􀀱'
       }
     )

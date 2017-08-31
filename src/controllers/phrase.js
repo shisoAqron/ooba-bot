@@ -1,4 +1,4 @@
-export default async (event) => {
+export default async (event, client) => {
 
   // 質問集とユーザの返し集
   const question_1 = () => {
@@ -18,13 +18,13 @@ export default async (event) => {
               'type': 'postback',
               'label': '普段使うグラス',
               'data': 'answer=nomal&questionId=1',
-              'text': '普段使いのグラスを探してるんだけど…'
+              'text': '普段使いのものを探してるんだけど…'
             },
             {
               'type': 'postback',
               'label': '特別な日のグラス',
               'data': 'answer=special&questionId=1',
-              'text': '特別な日のためにグラスを用意したいんだけど…'
+              'text': '特別な日に使うものを用意したいんだけど…'
             }
           ]
         }
@@ -32,8 +32,8 @@ export default async (event) => {
     ]
   }
   const answer_1 = [
-    '普段使いのグラスを探してるんだけど…',
-    '特別な日のためにグラスを用意したいんだけど…'
+    '普段使いのものを探してるんだけど…',
+    '特別な日に使うものを用意したいんだけど…'
   ]
 
   const question_2 = (ans) => {
@@ -59,9 +59,9 @@ export default async (event) => {
             },
             {
               'type': 'postback',
-              'label': '自分と誰かのペアで買いたい',
+              'label': 'ペアで買いたい',
               'data': 'answer=pair&questionId=2',
-              'text': '実はペアグラスを探してて…'
+              'text': '実はペアで買えるのを探してて…'
             },
             {
               'type': 'postback',
@@ -77,10 +77,11 @@ export default async (event) => {
   const answer_2 = [
     '自分用のを探してるよ',
     'プレゼントとして贈りたくて…',
-    '実はペアグラスを探してて…',
+    '実はペアで買えるのを探してて…',
     'パーティー用に良いのないかなって'
   ]
 
+  //imagemap用object messageだとuriかmessage返答のみらしい
   const question_3 = (ans) => {
     return [
       {
@@ -92,108 +93,82 @@ export default async (event) => {
         text: 'どんなのが良いかな～􀂬􀂬\n' + 'ビールによって、合うグラスも色々あるの􀀮􀁵\n' + '今回はどんなビールに合わせたい？'
       },
       {
-        'type': 'template',
+        'type': 'imagemap',
+        'baseUrl': 'https://yoohoo.ferix.jp/3008/images/question3',
         'altText': 'グラスを選んでね',
-        'template': {
-          'type': 'carousel',
-          'columns': [
-            {
-              'thumbnailImageUrl': 'https://example.com/bot/images/item1.jpg',
-              'title': 'ゴールド、ブラウンタイプ',
-              'text': 'ゴールド、ブラウンタイプ',
-              'actions': [
-                {
-                  'type': 'postback',
-                  'label': 'これ！',
-                  'data': 'answer=gold&questionId=3',
-                }
-              ]
-            },
-            {
-              'thumbnailImageUrl': 'https://example.com/bot/images/item1.jpg',
-              'title': 'ブラックタイプ',
-              'text': 'ブラックタイプ',
-              'actions': [
-                {
-                  'type': 'postback',
-                  'label': 'これ！',
-                  'data': 'answer=black&questionId=3',
-                }
-              ]
-            },
-            {
-              'thumbnailImageUrl': 'https://example.com/bot/images/item1.jpg',
-              'title': 'ホワイトタイプ',
-              'text': 'ホワイトタイプ',
-              'actions': [
-                {
-                  'type': 'postback',
-                  'label': 'これ！',
-                  'data': 'answer=white&questionId=3',
-                }
-              ]
-            },
-            {
-              'thumbnailImageUrl': 'https://example.com/bot/images/item1.jpg',
-              'title': 'ストロングタイプ',
-              'text': 'ストロングタイプ',
-              'actions': [
-                {
-                  'type': 'postback',
-                  'label': 'これ！',
-                  'data': 'answer=strong&questionId=3',
-                }
-              ]
-            },
-            {
-              'thumbnailImageUrl': 'https://example.com/bot/images/item1.jpg',
-              'title': 'IPA',
-              'text': 'IPA',
-              'actions': [
-                {
-                  'type': 'postback',
-                  'label': 'これ！',
-                  'data': 'answer=ipa&questionId=3',
-                }
-              ]
+        'baseSize': {
+          'height': 1040,
+          'width': 1040
+        },
+        'actions': [
+          {
+            'type': 'message',
+            'text': 'ゴールド、ブラウンタイプ',
+            'area': {
+              'x': 0,
+              'y': 0,
+              'width': 520,
+              'height': 520
             }
+          },
+          {
+            'type': 'message',
+            'text': 'ブラックタイプ',
+            'area': {
+              'x': 520,
+              'y': 0,
+              'width': 520,
+              'height': 520
+            }
+          },
+          {
+            'type': 'message',
+            'text': 'ホワイトタイプ',
+            'area': {
+              'x': 0,
+              'y': 520,
+              'width': 346,
+              'height': 520
+            }
+          },
+          {
+            'type': 'message',
+            'text': 'ストロングタイプ',
+            'area': {
+              'x': 347,
+              'y': 520,
+              'width': 346,
+              'height': 520
+            }
+          },
+          {
+            'type': 'message',
+            'text': 'IPA',
+            'area': {
+              'x': 793,
+              'y': 520,
+              'width': 347,
+              'height': 520
+            }
+          },
+        ]
+      }
 
-          ]
-        }
-      }]
+    ]
   }
+  const answer_3 = [
+    'ゴールド、ブラウンタイプ',
+    'ブラックタイプ',
+    'ホワイトタイプ',
+    'ストロングタイプ',
+    'IPA'
+  ]
 
   const question_4 = (ans) => {
-    let beerType = 'err'
-    switch (ans) {
-      case 'gold':
-        beerType = 'ゴールドかブラウン'
-        break
-
-      case 'black':
-        beerType = 'ブラックタイプ'
-        break
-
-      case 'white':
-        beerType = 'ホワイトタイプ'
-        break
-
-      case 'strong':
-        beerType = 'ストロングタイプ'
-        break
-
-      case 'ipa':
-        beerType = 'IPA'
-        break
-
-      default:
-        break
-    }
-
     return [
       {
         type: 'text',
-        text: beerType + 'ね！オッケ～􀀈􀀳'
+        text: ans + 'ね！オッケ～􀀳􀀈'
       },
       {
         'type': 'template',
@@ -206,7 +181,7 @@ export default async (event) => {
               'type': 'postback',
               'label': 'ちょっと変わったデザイン',
               'data': 'answer=unique&questionId=4',
-              'text': 'やっぱり、ひと工夫あるグラスだよね'
+              'text': 'やっぱり、ひと工夫あるやつだよね'
             },
             {
               'type': 'postback',
@@ -220,11 +195,12 @@ export default async (event) => {
     ]
   }
   const answer_4 = [
-    'やっぱり、ひと工夫あるグラスだよね',
+    'やっぱり、ひと工夫あるやつだよね',
     'シンプルなのものが良いな'
   ]
 
-  const question_5 = (ans) => {
+  const question_5 = async (ans) => {
+    const userProfile = await client.getProfile(event.source.userId)
     return [
       {
         type: 'text',
@@ -232,28 +208,22 @@ export default async (event) => {
       },
       {
         'type': 'template',
-        'altText': 'あっ そうそう、グラスの大きさにも色々あるけれど…あなたの好みはどの辺りかしら？',
+        'altText': userProfile.displayName + 'さんは、どれくらい飲むかで言えばどちらのタイプ？',
         'template': {
           'type': 'buttons',
-          'text': 'あっ そうそう、グラスの大きさにも色々あるけれど…\nあなたの好みはどの辺りかしら？',
+          'text': userProfile.displayName + 'さんは、どれくらい飲むかで言えばどちらのタイプ？',
           'actions': [
             {
               'type': 'postback',
-              'label': '大きめ',
-              'data': 'answer=large&questionId=5',
-              'text': '大きめのグラスがいいな'
+              'label': '少し飲めれば満足',
+              'data': 'answer=little&questionId=5',
+              'text': '少し飲めれば満足なタイプかな'
             },
             {
               'type': 'postback',
-              'label': '中くらい',
-              'data': 'answer=middle&questionId=5',
-              'text': '中くらいのグラスがいいな'
-            },
-            {
-              'type': 'postback',
-              'label': '小さめ',
-              'data': 'answer=small&questionId=5',
-              'text': '小さめのグラスがいいな'
+              'label': 'たくさん飲む',
+              'data': 'answer=alotof&questionId=5',
+              'text': 'たくさん飲むタイプかな'
             }
           ]
         }
@@ -261,9 +231,8 @@ export default async (event) => {
     ]
   }
   const answer_5 = [
-    '大きめのグラスがいいな',
-    '中くらいのグラスがいいな',
-    '小さめのグラスがいいな'
+    '少し飲めれば満足なタイプかな',
+    'たくさん飲むタイプかな'
   ]
 
   const question_6 = (ans) => {
@@ -274,41 +243,6 @@ export default async (event) => {
       },
       {
         'type': 'template',
-        'altText': '飲み方の好みで言えば、どっちのタイプ？',
-        'template': {
-          'type': 'buttons',
-          'text': '飲み方の好みで言えば、どっちのタイプ？',
-          'actions': [
-            {
-              'type': 'postback',
-              'label': '一気にグビッと',
-              'data': 'answer=alotof&questionId=6',
-              'text': '一気にグビッと飲むのが好き！'
-            },
-            {
-              'type': 'postback',
-              'label': '少しずつゆっくり飲む',
-              'data': 'answer=little&questionId=6',
-              'text': '少しずつちびちびいくタイプかな'
-            }
-          ]
-        }
-      }
-    ]
-  }
-  const answer_6 = [
-    '一気にグビッと飲むのが好き！',
-    '少しずつちびちびいくタイプかな'
-  ]
-
-  const question_7 = (ans) => {
-    return [
-      {
-        type: 'text',
-        text: 'へぇ～！そうなんだ！􀀭􀀭􀂌'
-      },
-      {
-        'type': 'template',
         'altText': 'じゃあ最後の質問ね！貴方にとってビールといえば…？',
         'template': {
           'type': 'buttons',
@@ -316,18 +250,13 @@ export default async (event) => {
           'actions': [
             {
               'type': 'postback',
-              'label': '味でしょ！',
-              'data': 'answer=taste&questionId=7',
-            },
-            {
-              'type': 'postback',
               'label': 'のどごしでしょ！',
-              'data': 'answer=throat&questionId=7',
+              'data': 'answer=throat&questionId=6',
             },
             {
               'type': 'postback',
               'label': '香りでしょ！',
-              'data': 'answer=flavor&questionId=7',
+              'data': 'answer=flavor&questionId=6',
             }
           ]
         }
@@ -335,7 +264,7 @@ export default async (event) => {
     ]
   }
 
-  const question_8 = (ans) => {
+  const question_7 = (ans) => {
     return [
       {
         type: 'text',
@@ -372,13 +301,13 @@ export default async (event) => {
             {
               'type': 'postback',
               'label': '気に入った！',
-              'data': 'answer=yes&questionId=8',
+              'data': 'answer=yes&questionId=7',
               'text': '気に入った！'
             },
             {
               'type': 'postback',
               'label': 'ちょっと違うかな？',
-              'data': 'answer=no&questionId=8',
+              'data': 'answer=no&questionId=7',
               'text': 'ちょっと違うかな？'
             }
           ]
@@ -386,12 +315,12 @@ export default async (event) => {
       }
     ]
   }
-  const answer_8 = [
+  const answer_7 = [
     '気に入った！',
     'ちょっと違うかな？'
   ]
 
-  const question_9 = (ans) => {
+  const question_8 = (ans) => {
     if (ans == 'yes') {
       return [
         {
@@ -426,12 +355,12 @@ export default async (event) => {
               {
                 'type': 'postback',
                 'label': '違う形状で探してみる',
-                'data': 'answer=shape&questionId=9',
+                'data': 'answer=shape&questionId=8',
               },
               {
                 'type': 'postback',
                 'label': '違う大きさで探してみる',
-                'data': 'answer=size&questionId=9',
+                'data': 'answer=size&questionId=8',
               }
             ]
           }
@@ -442,49 +371,93 @@ export default async (event) => {
   }
 
   // botへの返しを拾わないようにする
-  const ansList = answer_1.concat(answer_2, answer_4, answer_5, answer_6, answer_8)
-  const checkAnswer = (mes) => {
+  const checkAnswer = (mes, ansList) => {
     let exist = false
     for (let ans of ansList) {
-      if (mes == ans) {
+      if (mes.match(ans)) {
         exist = true
         break
       }
     }
     return exist
   }
+  const buttonAns = answer_1.concat(answer_2, answer_4, answer_5, answer_7)
+  const greeting = ['おはよう', 'こんにちは', 'こんばんは']
 
   // 想定していないユーザ発言への返し
-  const failed = () => {
+  const failed = (mes) => {
+    const randomNum = Math.floor( Math.random() * 5 )
+    let text = ''
+    switch (randomNum) {
+      case 1:
+        text = 'ちょっとわかんないなぁ􀀩'
+        break
+
+      case 2:
+        text = 'う〜ん􀂎'
+        break
+
+      case 3:
+        text = '􀂉􀀶􀀶􀀶'
+        break
+
+      case 4:
+        text = mes + '􀀉􀀶'
+        break
+
+      default:
+        text = 'え？なぁに～？􀀯􀀶'
+        break
+    }
+
     return [{
       type: 'text',
-      text: 'え？なぁに～？􀀯􀀶'
+      text: text
     }]
   }
 
-  // 何も行わない場合はnullを返しておく -> index.jsの方で判定s
+  // 何も行わない場合はnullを返しておく -> index.jsの方で判定
+  // messageの対応 質問開始や雑談、imagemapの選択処理を行う
   if (event.type == 'message') {
     const reciveMessage = event.message.text
 
     // リッチメニューからのテキストをユーザ発言させる
-    if (reciveMessage.match(/^なにか良いグラスない？$/)) {
+    if (reciveMessage.match(/グラス/)) {
       return question_1()
 
-    } else if (checkAnswer(reciveMessage)) {
+    // imagemapの回答はpostbackが利用できないのでtextから
+    } else if (checkAnswer(reciveMessage, answer_3)) {
+      return question_4(reciveMessage)
+
+    // ボタンを押した際のユーザ発言に反応させない
+    } else if (checkAnswer(reciveMessage, buttonAns)) {
       return null
 
+    // あいさつにはおうむ返し TODO:できればキャラクターぽさを出した半固定文にしたい
+    } else if (checkAnswer(reciveMessage, greeting)) {
+      return [{type: 'text', text: reciveMessage}]
+
     } else {
-      return failed()
+      return failed(reciveMessage)
     }
 
-  // postbackのdataから次の質問管理と選択内容把握（未実装）する
+  // postbackの対応 dataから次の質問の順番管理をする
   } else if (event.type == 'postback') {
     const query = event.postback.data.match(/answer=(.*)&questionId=(\d+)/)
     const [answer, questionId] = [query[1], Number(query[2])]
     console.log('questionId:' + questionId, 'answer:' + answer)
 
-    let body = null
-    if (questionId < 9) body = eval('question_' + (questionId + 1) + '(answer)')
-    return body
+    // question3->4への移行時には利用しないが、おそらく問題なし
+    return questionId < 8 ? eval('question_' + (questionId + 1) + '(answer)') : null
+
+  // followイベントの対応
+  } else if (event.type == 'follow') {
+    const userProfile = await client.getProfile(event.source.userId)
+    return [{
+      type: 'text',
+      text: '友達登録ありがとう～􀂱􀀭' + '\n'
+              + 'とっておきのグラス選びなら私に任せて􀀹􀀅' + '\n'
+              + userProfile.displayName + 'さんが好きそうなのオススメ出来るよう頑張っちゃう􀁿􀂱􀀱'
+    }]
   }
 }

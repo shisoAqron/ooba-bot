@@ -90,7 +90,7 @@ export default async (event, client) => {
       },
       {
         type: 'text',
-        text: 'どんなのが良いかな～􀂬􀂬\n' + 'ビールによって、合うグラスも色々あるの􀀮􀁵\n' + '今回はどんなビールに合わせたい？'
+        text: 'どんなのが良いかな～􀂬􀂬\nビールによって、合うグラスも色々あるの􀀮􀁵\n今回はどんなビールに合わせたい？'
       },
       {
         'type': 'imagemap',
@@ -243,10 +243,10 @@ export default async (event, client) => {
       },
       {
         'type': 'template',
-        'altText': 'じゃあ最後の質問ね！貴方にとってビールといえば…？',
+        'altText': 'じゃあ最後の質問！貴方にとってビールといえば…？',
         'template': {
           'type': 'buttons',
-          'text': 'じゃあ最後の質問ね！\n貴方にとってビールといえば…？',
+          'text': 'じゃあ最後の質問！\n貴方にとってビールといえば…？',
           'actions': [
             {
               'type': 'postback',
@@ -281,7 +281,7 @@ export default async (event, client) => {
           'actions': [
             {
               'type': 'uri',
-              'label': '詳細を見る',
+              'label': '全体を見る',
               'uri': 'https://shokki-pro.com/products/detail.php?product_id=26836'
             }
           ]
@@ -293,10 +293,10 @@ export default async (event, client) => {
       },
       {
         'type': 'template',
-        'altText': 'どう？　このグラスは気に入った？',
+        'altText': 'どう？\nこのグラスは気に入った？',
         'template': {
-          'type': 'confirm',
-          'text': 'どう？　このグラスは気に入った？',
+          'type': 'buttons',
+          'text': 'どう？\nこのグラスは気に入った？',
           'actions': [
             {
               'type': 'postback',
@@ -324,43 +324,34 @@ export default async (event, client) => {
     if (ans == 'yes') {
       return [
         {
-          'type': 'template',
-          'altText': 'よかった～ グラスはここから買えるよ',
-          'template': {
-            'type': 'buttons',
-            'text': 'よかった～\nグラスはここから買えるよ',
-            'actions': [
-              {
-                'type': 'uri',
-                'label': '購入ページへ',
-                'uri': 'https://shokki-pro.com/products/detail.php?product_id=26836',
-              }
-            ]
-          }
+          type: 'text',
+          text: 'よかった～􀀭\nまだまだ色んなグラスがあるから他にも探してみてね􀀷'
         }
       ]
     } else {
       return [
         {
           type: 'text',
-          text: 'あら、ちょっと外れちゃった？ゴメンね􀀩'
+          text: 'あら、ちょっと外れちゃった？ゴメンね􀀩\n他も探してみよっか！􀂔'
         },
         {
           'type': 'template',
-          'altText': '他も探してみよっか？',
+          'altText': 'そうね…例えばどんなグラスを探したい？',
           'template': {
             'type': 'buttons',
-            'text': '他も探してみよっか？',
+            'text': 'そうね…例えばどんなグラスを探したい？',
             'actions': [
               {
                 'type': 'postback',
-                'label': '違う形状で探してみる',
-                'data': 'answer=shape&questionId=8',
+                'label': '普段使うグラス',
+                'data': 'answer=nomal&questionId=1',
+                'text': '普段使いのものを探してるんだけど…'
               },
               {
                 'type': 'postback',
-                'label': '違う大きさで探してみる',
-                'data': 'answer=size&questionId=8',
+                'label': '特別な日のグラス',
+                'data': 'answer=special&questionId=1',
+                'text': '特別な日に使うものを用意したいんだけど…'
               }
             ]
           }
